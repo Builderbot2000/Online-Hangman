@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <!-- Other CSS -->
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Amatic SC'>
+
+    <title>CMPT 213 Online Hangman Game</title>
+</head>
+<body>
+
+    <center>
+        <br>
+        <br>
+        <br>
+        <div class="container mt-5" style="width:40rem">
+            <div class="row no-gutters">
+
+                <!-- Hangman Logo -->
+                <div class="col-sm">
+                    <img class="img-logo" th:src="@{/images/HangmanLogo.png}">
+                </div>
+
+                <!-- Title & Buttons -->
+                <div class="col-sm">
+                    <div class="card" style="border: none">
+                        <center>
+                            <p class="align-middle">
+                                <h1 style="font-family: Amatic SC"><th:block th:text="${promptMessage.message}" id="gameName">message</th:block></h1>
+                            </p>
+                            <form action="#" th:action="@{/game}" th:object="${game}" method="post">
+                                <button class="btn-lg btn-dark mb-1" style="font-family: Amatic SC">Press to start</button>
+                            </form>
+                            <button class="btn-lg btn-dark" data-toggle="collapse" href="#rules" style="font-family: Amatic SC">Rules of the game</button>
+                        </center>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Game Rules -->
+            <div class="collapse" id="rules">
+                <div class="card card-body" style="border: none">
+                    <ul style="font-family: Amatic SC">
+                        <b>
+                        <li>Select a letter of the alphabet.</li>
+                        <li>If the letter is part of the answer, select another letter.</li>
+                        <li>If the letter is not part of the answer, add a part to hangman.</li>
+                        <li>When you've guessed all the correct letters, you win.</li>
+                        <li>When the hangman is complete, you lose.</li>
+                        </b>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <p style="color:grey"><i>By Kevin Tang (301357455, kta76@sfu.ca)</i></p>
+    </center>
+
+    <!-- Bootstrap Components (jQuery first, then Popper.js, then Bootstrap JS) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</body>
+</html>

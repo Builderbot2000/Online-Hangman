@@ -26,4 +26,21 @@ public class HangmanController {
         // take the user to helloworld.html
         return "helloworld";
     }
+
+    @GetMapping("/welcome")
+    public String showWelcomePage(Model model) {
+
+        promptMessage.setMessage("Welcome to the Online Hangman Game");
+        model.addAttribute("promptMessage", promptMessage);
+
+        // take the user to welcome.html
+        return "welcome";
+    }
+
+    @PostMapping("/game")
+    public String showGamePage(Model model) {
+
+        // take the user to game.html
+        return "game";
+    }
 }
