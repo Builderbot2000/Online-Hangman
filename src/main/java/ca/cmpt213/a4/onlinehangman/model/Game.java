@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
+// By Kevin Tang (301357455, kta76@sfu.ca)
+
 /**
  * The model that handles the logic of this application
  */
@@ -36,7 +38,7 @@ public class Game {
 
         // Initialization of all other fields
         this.ID = ID;
-        this.allowedFailAttempts = 7;
+        this.allowedFailAttempts = 8;
         this.attempts = 0;
         this.successfulAttempts = 0;
         this.failedAttempts = 0;
@@ -50,9 +52,10 @@ public class Game {
      * @param letter The letter to be guessed
      */
     public void attempt(char letter) {
-        attempts++;
+
         if (letter == ' ') return;
-        else if (word.indexOf(letter) == -1) failedAttempts++;
+        attempts++;
+        if (word.indexOf(letter) == -1) failedAttempts++;
         else if (!correctGuesses.contains(letter)) {
             successfulAttempts++;
             correctGuesses.add(letter);
@@ -65,6 +68,7 @@ public class Game {
      * Updates game status based on wordState
      */
     public void updateStatus() {
+
         if (!wordState.contains("_")) status = Status.WON;
         else if (failedAttempts >= allowedFailAttempts) status = Status.LOST;
         else status = Status.ACTIVE;
@@ -75,6 +79,7 @@ public class Game {
      * @param letter The correctly guessed letter
      */
     private void revealLetters(char letter) {
+
         char[] wordCharArray = word.toCharArray();
         char[] tempCharArray = wordState.toCharArray();
         for (int i = 0; i < wordCharArray.length; i++) {

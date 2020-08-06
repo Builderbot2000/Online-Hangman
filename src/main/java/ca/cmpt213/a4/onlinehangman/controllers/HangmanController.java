@@ -7,11 +7,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.PostConstruct;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicLong;
+
+// By Kevin Tang (301357455, kta76@sfu.ca)
 
 /**
  * The main API controller for the entire application
@@ -35,6 +38,7 @@ public class HangmanController {
             "Hangman-4.png",
             "Hangman-5.png",
             "Hangman-6.png",
+            "HangmanLogo.png"
     }; // Hard-coded addresses for the dynamic hangman image
 
     //works like a constructor, but wait until dependency injection is done, so it's more like a setup
@@ -137,21 +141,23 @@ public class HangmanController {
         model.addAttribute("totalCounter",gameLogic.getAttempts());
         model.addAttribute("successCounter",gameLogic.getSuccessfulAttempts());
         model.addAttribute("failCounter",gameLogic.getFailedAttempts());
-        model.addAttribute("gameID","Game " + gameLogic.getID());
+        model.addAttribute("gameInfo","Game " + gameLogic.getID() + " ["+ gameLogic.getStatus()+"]");
         model.addAttribute("wordState",gameLogic.getWordState());
 
         // Update hangman image
-        if (gameLogic.getFailedAttempts() <= 6) {
+        if (gameLogic.getFailedAttempts() <= 7) {
             model.addAttribute("hangmanState",hangmanStates[gameLogic.getFailedAttempts()]);
         } else {
-            model.addAttribute("hangmanState",hangmanStates[6]);
+            model.addAttribute("hangmanState",hangmanStates[7]);
         }
 
         // Check game status and redirect accordingly
         if (gameLogic.getStatus() == Status.ACTIVE) return "game";
-        else if (gameLogic.getStatus() == Status.WON) return "gamewon";
-        else if (gameLogic.getStatus() == Status.LOST) return "gameover";
-        else return "game";
+        else {
+            model.addAttribute("endingStatus", "YOU " + gameLogic.getStatus());
+            model.addAttribute("answer", "The answer is " + gameLogic.getWord());
+            return "gameover";
+        }
     }
 
     /**
@@ -159,6 +165,6 @@ public class HangmanController {
      * @return Direction to gamenotfound.html
      */
     @ExceptionHandler({ GameNotFoundException.class })
-    @ResponseStatus(value = HttpStatus.NOT_FOUND, reason = "No game of such id can be found.")
+    @ResponseStatus(value = HttpStatus.NOT_FOUND)
     public String GameNotFoundExceptionHandler() { return "gamenotfound"; }
 }

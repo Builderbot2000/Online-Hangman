@@ -190,8 +190,8 @@
         </div>
         <br>
 
-        <!-- Game ID Display -->
-        <p th:text=${gameID} style="font-family:sans-serif"></p>
+        <!-- Game ID & Status Display -->
+        <p th:text=${gameInfo} style="font-family:sans-serif"></p>
 
         <!-- Restart Button -->
         <form action="#" th:action="@{/welcome}" th:object="${welcome}" method="get">
