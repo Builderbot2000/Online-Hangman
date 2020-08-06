@@ -14,7 +14,7 @@
 
     <title>CMPT 213 Online Hangman Game</title>
 </head>
-<body>
+<body style="font-family: Amatic SC">
 
     <center>
         <br>
@@ -32,12 +32,18 @@
                 <div class="col-sm">
                     <div class="card" style="border: none">
                         <center>
+
+                            <!-- Title -->
                             <p class="align-middle">
-                                <h1 style="font-family: Amatic SC"><th:block th:text="${promptMessage.message}" id="gameName">message</th:block></h1>
+                                <h1><th:block th:text="${promptMessage.message}" id="gameName">message</th:block></h1>
                             </p>
+
+                            <!-- Start Game Button -->
                             <form action="#" th:action="@{/game}" th:object="${game}" method="post">
-                                <button class="btn-lg btn-dark mb-1" style="font-family: Amatic SC">Press to start</button>
+                                <button class="btn-lg btn-dark mb-1">Press to start</button>
                             </form>
+
+                            <!-- Game Rules Button -->
                             <button class="btn-lg btn-dark" data-toggle="collapse" href="#rules" style="font-family: Amatic SC">Rules of the game</button>
                         </center>
                     </div>
@@ -47,7 +53,7 @@
             <!-- Game Rules -->
             <div class="collapse" id="rules">
                 <div class="card card-body" style="border: none">
-                    <ul style="font-family: Amatic SC">
+                    <ul>
                         <b>
                         <li>Select a letter of the alphabet.</li>
                         <li>If the letter is part of the answer, select another letter.</li>
@@ -60,7 +66,9 @@
             </div>
         </div>
 
-        <p style="color:grey"><i>By Kevin Tang (301357455, kta76@sfu.ca)</i></p>
+        <!-- Author Info -->
+        <p style="color:grey; font-family:sans-serif"><i>By Kevin Tang (301357455, kta76@sfu.ca)</i></p>
+
     </center>
 
     <!-- Bootstrap Components (jQuery first, then Popper.js, then Bootstrap JS) -->

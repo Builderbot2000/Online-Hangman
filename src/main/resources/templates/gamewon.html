@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="/styles/main.css">
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Amatic SC'>
 
-    <title>Game Not Found</title>
+    <title>Game Over</title>
 </head>
 <body>
 
@@ -29,11 +29,11 @@
 <br>
 <center>
     <div class="wrapper container-fluid justify-content-center" style="width=40rem; height=40rem">
-        <h1><b><p style="font-family: Indie Flower">Sorry, a game cannot be found with given ID.</p></b></h1>
+        <h1><b><p style="font-family: Indie Flower">YOU WIN</p></b></h1>
 
         <!-- Restart Button -->
         <form action="#" th:action="@{/welcome}" th:object="${welcome}" method="get">
-            <button class="btn-lg btn-dark mb-1">Back to the Start</button>
+            <button class="btn-lg btn-dark mb-1">Restart</button>
         </form>
     </div>
 </center>

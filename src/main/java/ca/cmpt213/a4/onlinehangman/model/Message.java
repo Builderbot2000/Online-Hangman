@@ -1,5 +1,8 @@
 package ca.cmpt213.a4.onlinehangman.model;
 
+/**
+ * A message to be posted in basic pages
+ */
 public class Message {
     private String message;
 
